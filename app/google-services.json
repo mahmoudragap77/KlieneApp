@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767574702445",
+    "project_id": "klieneapp-7b8ab",
+    "storage_bucket": "klieneapp-7b8ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767574702445:android:2cfa33571a7caa987e4264",
+        "android_client_info": {
+          "package_name": "com.example.klieneapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUm5NfymhL5M42RUGKk5HENC-J0yOwdZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
