@@ -55,7 +55,7 @@
              />
 
         <EditText
-            android:id="@+id/ed_email"
+            android:id="@+id/first_name"
             android:layout_width="0dp"
             android:layout_height="55dp"
             style="@style/editText"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dont_have_account"/>
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/last_name"
             android:layout_width="0dp"
             android:layout_height="55dp"
             style="@style/editText"
@@ -76,7 +76,7 @@
             android:inputType="textPassword"
             app:layout_constraintStart_toStartOf="@+id/guideline_left_vert"
             app:layout_constraintEnd_toEndOf="@+id/guideline_right_vert"
-            app:layout_constraintTop_toBottomOf="@+id/ed_email"/>
+            app:layout_constraintTop_toBottomOf="@+id/first_name"/>
 
 
         <TextView
@@ -88,7 +88,7 @@
             android:gravity="center"
             android:text="@string/forgotPassword"
             app:layout_constraintStart_toStartOf="@+id/guideline_left_vert"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/last_name"
             />
 
 
