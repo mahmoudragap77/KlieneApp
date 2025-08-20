@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,6 +19,10 @@ class RegisterViewModel @Inject constructor(
     val register : Flow<Resource<FirebaseUser>> = _register
 
             fun registerWithEmailAndPassword(user: User, password: String) {
+
+                runBlocking{
+                    _register.emit(Resource.Loading())
+                }
                 firebaseAuth.createUserWithEmailAndPassword(user.email, password)
                     .addOnSuccessListener {
                             it.user?.let {
