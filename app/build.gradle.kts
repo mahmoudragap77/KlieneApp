@@ -1,21 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-parcelize")
-    id ("androidx.navigation.safeargs.kotlin")
-    id ("dagger.hilt.android.plugin")
-    id ("kotlin-kapt")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
     alias(libs.plugins.google.gms.google.services)
 }
 
 android {
     namespace = "com.example.klieneapp"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.klieneapp"
         minSdk = 23
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -31,6 +31,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -38,10 +39,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,29 +55,35 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.androidx.fragment)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.13.0")
 
+    // Circular image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
-    //loading button
+    // Viewpager2 indicator
 
-    //Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // StepView
 
-    //circular image
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.2")
 
-    //viewpager2 indicatior
-    implementation ("androidx.viewpager2:viewpager2:1.1.0")
+    // Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.57")
+    kapt("com.google.dagger:hilt-compiler:2.57")
 
-    //stepView
-    implementation("com.github.shuhart:stepview:1.5.1")
-    //Android Ktx
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.9.3")
+    // For activity/fragment viewModels delegate
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("androidx.fragment:fragment-ktx:1.8.9")
 
-    //Dagger hilt
-    implementation ("com.google.dagger:hilt-android:2.38.1")
-     kapt ("com.google.dagger:hilt-compiler:2.38.1")
+    // Progress button
+    implementation("com.github.razir.progressbutton:progressbutton:2.1.0")
+    implementation("io.writeopia:loading-button:3.0.0")
 }
