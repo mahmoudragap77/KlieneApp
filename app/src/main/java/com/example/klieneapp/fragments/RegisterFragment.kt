@@ -13,10 +13,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.klieneapp.util.Resource
 import com.example.klieneapp.data.User
+import com.example.klieneapp.util.RegisterValidation
 import com.example.klieneapp.viewmodels.RegisterViewModel
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -64,6 +67,24 @@ class RegisterFragment : Fragment() {
                     }
 
                     else -> Unit
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.failedValidations) {
+                    withContext(Dispatchers.Main){
+                        binding.email.apply {
+                            requestFocus()
+                            error = validation.email.massage
+                        }
+                    }
+                }
+                if (validation.password is RegisterValidation.failedValidations) {
+                    binding.password.apply {
+                        requestFocus()
+                        error = validation.password.massage
+                    }
                 }
             }
         }
