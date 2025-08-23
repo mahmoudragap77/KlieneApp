@@ -10,6 +10,7 @@ import com.example.klieneapp.util.validateEmail
 import com.example.klieneapp.util.validatePassword
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +20,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-        private val firebaseAuth: FirebaseAuth
+        private val firebaseAuth: FirebaseAuth,
+    private val dbFireStore: FirebaseFirestore
 ) : ViewModel() {
-    private val _register = MutableStateFlow<Resource<FirebaseUser>>(Resource.Unspecified())
-    val register : Flow<Resource<FirebaseUser>> = _register
+    private val _register = MutableStateFlow<Resource<User>>(Resource.Unspecified())
+    val register : Flow<Resource<User>> = _register
 
     private val _validation = Channel<RegisterFieldState>()
     val validation = _validation.receiveAsFlow()
@@ -37,7 +39,7 @@ class RegisterViewModel @Inject constructor(
                     firebaseAuth.createUserWithEmailAndPassword(user.email, password)
                         .addOnSuccessListener {
                             it.user?.let {
-                                _register.value = Resource.Success(it)
+                                saveUserInfo(it.uid, user)
                             }
                         }
                         .addOnFailureListener {
@@ -63,4 +65,16 @@ class RegisterViewModel @Inject constructor(
                 && passwordValidation is RegisterValidation.successValidations
         return shouldRegister
     }
+    private fun RegisterViewModel.saveUserInfo(userUid: String, user:User) {
+        dbFireStore.collection("user").
+        document(userUid)
+            .set(user)
+            .addOnSuccessListener {
+                _register.value = Resource.Success(user)
+            }.addOnFailureListener {
+                _register.value = Resource.Error(it.message.toString())
+            }
+    }
+
 }
+
