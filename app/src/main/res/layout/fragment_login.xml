@@ -55,7 +55,7 @@
              />
 
         <EditText
-            android:id="@+id/first_name"
+            android:id="@+id/login_email"
             android:layout_width="0dp"
             android:layout_height="55dp"
             style="@style/editText"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dont_have_account"/>
 
         <EditText
-            android:id="@+id/last_name"
+            android:id="@+id/login_password"
             android:layout_width="0dp"
             android:layout_height="55dp"
             style="@style/editText"
@@ -76,7 +76,7 @@
             android:inputType="textPassword"
             app:layout_constraintStart_toStartOf="@+id/guideline_left_vert"
             app:layout_constraintEnd_toEndOf="@+id/guideline_right_vert"
-            app:layout_constraintTop_toBottomOf="@+id/first_name"/>
+            app:layout_constraintTop_toBottomOf="@+id/login_email"/>
 
 
         <TextView
@@ -88,11 +88,11 @@
             android:gravity="center"
             android:text="@string/forgotPassword"
             app:layout_constraintStart_toStartOf="@+id/guideline_left_vert"
-            app:layout_constraintTop_toBottomOf="@+id/last_name"
+            app:layout_constraintTop_toBottomOf="@+id/login_password"
             />
 
 
-        <androidx.appcompat.widget.AppCompatButton
+        <io.writeopia.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/Login"
             android:layout_width="0dp"
             android:layout_height="@dimen/mudiem_button_height"
@@ -101,7 +101,8 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_left_vert"
             app:layout_constraintEnd_toEndOf="@+id/guideline_right_vert"
             app:layout_constraintTop_toBottomOf="@+id/forgot_password"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            app:spinning_bar_color="@color/white"/>
 
         <ImageView
             android:id="@+id/facebook_logo"

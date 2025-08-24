@@ -11,6 +11,7 @@ import com.example.klieneapp.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.klieneapp.util.Resource
 import com.example.klieneapp.data.User
 import com.example.klieneapp.util.RegisterValidation
@@ -36,6 +37,9 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.doYouHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
         binding.apply {
             registerButtonId.setOnClickListener {
                 val user = User(
