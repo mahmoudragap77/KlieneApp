@@ -82,9 +82,15 @@ dependencies {
 
     // For activity/fragment viewModels delegate
     implementation("androidx.activity:activity-ktx:1.10.1")
+    //noinspection UseTomlInstead
     implementation("androidx.fragment:fragment-ktx:1.8.9")
 
     // Progress button
     implementation("com.github.razir.progressbutton:progressbutton:2.1.0")
     implementation("io.writeopia:loading-button:3.0.0")
+
+
+//Navigation component
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.2")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.5.2")
 }

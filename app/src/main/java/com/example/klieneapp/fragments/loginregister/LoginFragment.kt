@@ -1,7 +1,8 @@
-package com.example.klieneapp.fragments
+package com.example.klieneapp.fragments.loginregister
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.klieneapp.util.Resource
 import com.example.klieneapp.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -70,7 +72,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     is Resource.Unspecified<*> -> TODO()
                 }
 
-                lifecycleScope.launchWhenStarted {
+                lifecycleScope.launch {
                     viewModel.login.collect {
                         when (it) {
                             is Resource.Loading -> {
@@ -80,7 +82,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             is Resource.Success -> {
                                 binding.Login.revertAnimation()
                                 Intent(
-                                    requireActivity(),
+                                    context,
                                     ShoppingActivity::class.java
                                 ).also { intent ->
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -91,6 +93,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             }
 
                             is Resource.Error -> {
+                                Log.e("ERRORRR", it.message.toString())
                                 binding.Login.revertAnimation()
                             }
 

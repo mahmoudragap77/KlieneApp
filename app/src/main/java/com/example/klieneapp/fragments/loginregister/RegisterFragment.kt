@@ -1,4 +1,4 @@
-package com.example.klieneapp.fragments
+package com.example.klieneapp.fragments.loginregister
 
 import android.os.Bundle
 import android.util.Log
@@ -16,9 +16,6 @@ import com.example.klieneapp.util.Resource
 import com.example.klieneapp.data.User
 import com.example.klieneapp.util.RegisterValidation
 import com.example.klieneapp.viewmodels.RegisterViewModel
-import com.github.razir.progressbutton.hideProgress
-import com.github.razir.progressbutton.showProgress
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
