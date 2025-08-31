@@ -20,14 +20,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".activities.LoginRegisterActivity"
-            android:exported="false">  <!-- Adjust exported based on your needs -->
-            <!-- You can also add intent-filters here if this activity
-                 should respond to specific implicit intents -->
-        </activity>
+        android:name=".activities.LoginRegisterActivity"
+        android:exported="false">  <!-- Adjust exported based on your needs -->
+        <!-- You can also add intent-filters here if this activity
+             should respond to specific implicit intents -->
+    </activity>
     </application>
 
 </manifest>
